@@ -94,6 +94,13 @@ async function openWish(){
   button.disabled=false;
  }
 }
+ window.addEventListener("pageshow", function(){
+  const button = document.getElementById("unlock");
+  const status = document.getElementById("status");
+
+  button.disabled = false;
+  status.textContent = "";
+});
 </script>
 </body>
 </html>
