@@ -78,14 +78,14 @@ async function openWish(){
    },
    body:JSON.stringify({
     p_name:name,
-    p_message_count:4
+    p_message_count:5
    })
   });
 
   if(!response.ok) throw new Error("Database connection failed");
 
   const index=await response.json();
-  if(!Number.isInteger(index)||index<1||index>4)
+  if(!Number.isInteger(index)||index<1||index>5)
    throw new Error("Invalid message assignment");
 
   window.location.href="wish.html?name="+encodeURIComponent(name);
