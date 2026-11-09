@@ -137,21 +137,35 @@ loadWish();
 </style>
 
 <script>
+
 const music = document.getElementById("bloomMusic");
 const musicToggle = document.getElementById("musicToggle");
 
+async function startMusic() {
+  try {
+    await music.play();
+    sessionStorage.setItem("bloomMusicOn", "yes");
+    musicToggle.textContent = "♫ Pause Music";
+  } catch (error) {
+    musicToggle.textContent = "♫ Tap to Play";
+  }
+}
+
 musicToggle.addEventListener("click", async () => {
   if (music.paused) {
-    try {
-      await music.play();
-      musicToggle.textContent = "♫ Pause Music";
-    } catch (error) {
-      musicToggle.textContent = "Tap to Play ♫";
-    }
+    await startMusic();
   } else {
     music.pause();
+    sessionStorage.setItem("bloomMusicOn", "no");
     musicToggle.textContent = "♫ Play Music";
   }
+});
+
+// Automatically resume music on page load
+if (sessionStorage.getItem("bloomMusicOn") === "yes") {
+  startMusic();
+}
+ 
 });
 </script>
 </body>
