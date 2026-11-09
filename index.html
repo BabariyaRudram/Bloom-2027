@@ -46,7 +46,7 @@ button:disabled{opacity:.6}
 <div class="shade"></div>
 
 <main class="card">
- <div style="font-size:38px">🌸 ✨ 🌷</div>
+ <div style="font-size:38px"> 🌷</div>
  <h1>A Little Surprise Awaits You.</h1>
  <p>Something magical is blooming...<br>Enter your name to discover your surprise.</p>
  <input id="visitorName" maxlength="50" placeholder="Enter your name..." autocomplete="given-name">
@@ -90,7 +90,7 @@ async function openWish(){
 
   window.location.href="wish.html?name="+encodeURIComponent(name);
  }catch(error){
-  status.textContent="Please try again. Your surprise is waiting! 💜";
+  status.textContent="Please try again. Your surprise is waiting! ";
   button.disabled=false;
  }
 }
@@ -185,7 +185,7 @@ if (sessionStorage.getItem("bloomMusicOn") === "yes") {
 for (let i = 0; i < 18; i++) {
   const petal = document.createElement("div");
   petal.className = "petal";
-  petal.textContent = "🌺";
+  petal.textContent = "🌸";
   petal.style.left = Math.random() * 100 + "vw";
   petal.style.fontSize = (12 + Math.random() * 15) + "px";
   petal.style.animationDuration = (7 + Math.random() * 9) + "s";
