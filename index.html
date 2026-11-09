@@ -1,12 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BLOOM 2027 🌸</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLOOM 2027 🌸</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #170d25;
+  color: white;
+}
+
+.background {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 5, 25, 0.22);
+  z-index: -1;
+}
+
+.glass {
+  width: min(88%, 420px);
+  padding: 42px 26px;
+  text-align: center;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 15px 50px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.35);
+  animation: appear 1.2s ease;
+}
+
+h1 {
+  font-size: clamp(28px, 7vw, 38px);
+  line-height: 1.2;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 15px rgba(0,0,0,.3);
+}
+
+p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 26px;
+  color: rgba(255,255,255,.9);
+}
+
+input {
+  width: 100%;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.4);
+  background: rgba(255,255,255,.16);
+  color: white;
+  outline: none;
+  font-size: 16px;
+  text-align: center;
+}
+
+input::placeholder {
+  color: rgba(255,255,255,.8);
+}
+
+button {
+  width: 100%;
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid rgba(255,255,255,.4);
+  border-radius: 16px;
+  background: rgba(255,255,255,.25);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .3s;
+}
+
+button:active {
+  transform: scale(.96);
+}
+
+#message {
+  display: none;
+  margin-top: 22px;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
 </head>
+
 <body>
+
+<video class="background" autoplay muted loop playsinline>
+  <source src="background.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<main class="glass">
   <h1>A Little Surprise Awaits You.</h1>
-  <p>Something magical is blooming...</p>
+
+  <p>
+    Something magical is blooming...
+    Enter your name to discover your surprise.
+  </p>
+
+  <input
+    id="visitorName"
+    type="text"
+    placeholder="Enter your name..."
+    autocomplete="given-name"
+  >
+
+  <button onclick="showWish()">Unlock My Surprise ✨</button>
+
+  <div id="message"></div>
+</main>
+
+<script>
+function showWish() {
+  const name = document.getElementById("visitorName").value.trim();
+  const message = document.getElementById("message");
+
+  if (!name) {
+    alert("Please enter your name first 🌸");
+    return;
+  }
+
+  message.style.display = "block";
+  message.innerHTML =
+    "🌸 Happy New Year 2027, " +
+    name.replace(/[&<>"']/g, c => ({
+      "&":"&amp;", "<":"&lt;", ">":"&gt;",
+      '"':"&quot;", "'":"&#39;"
+    })[c]) +
+    "! 🌸<br>May your year bloom with happiness, love and magic. ✨";
+}
+</script>
+
 </body>
 </html>
