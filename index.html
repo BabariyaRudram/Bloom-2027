@@ -102,5 +102,51 @@ async function openWish(){
   status.textContent = "";
 });
 </script>
+ 
+<audio id="bloomMusic" loop preload="auto">
+  <source src="bloom-music.mp4" type="audio/mp4">
+</audio>
+
+<button id="musicToggle" class="music-toggle" type="button">
+  ♫ Play Music
+</button>
+
+<style>
+.music-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 18px;
+  width: auto;
+  z-index: 10;
+  padding: 13px 20px;
+  border-radius: 30px;
+  color: white;
+  background: rgba(255,255,255,.32);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,.65);
+  box-shadow: 0 5px 20px rgba(20,10,40,.15);
+  font-size: 14px;
+}
+</style>
+
+<script>
+const music = document.getElementById("bloomMusic");
+const musicToggle = document.getElementById("musicToggle");
+
+musicToggle.addEventListener("click", async () => {
+  if (music.paused) {
+    try {
+      await music.play();
+      musicToggle.textContent = "♫ Pause Music";
+    } catch (error) {
+      musicToggle.textContent = "Tap to Play ♫";
+    }
+  } else {
+    music.pause();
+    musicToggle.textContent = "♫ Play Music";
+  }
+});
+</script>
 </body>
 </html>
