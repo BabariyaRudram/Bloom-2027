@@ -161,5 +161,40 @@ if (sessionStorage.getItem("bloomMusicOn") === "yes") {
 }
  
 </script>
+ 
+<style>
+.petal {
+  position: fixed;
+  top: -30px;
+  z-index: 5;
+  pointer-events: none;
+  animation: petalFall linear infinite;
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translateY(-5vh) translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(110vh) translateX(70px) rotate(360deg);
+  }
+}
+</style>
+
+<script>
+for (let i = 0; i < 18; i++) {
+  const petal = document.createElement("div");
+  petal.className = "petal";
+  petal.textContent = "🌺";
+  petal.style.left = Math.random() * 100 + "vw";
+  petal.style.fontSize = (12 + Math.random() * 15) + "px";
+  petal.style.animationDuration = (7 + Math.random() * 9) + "s";
+  petal.style.animationDelay = (-Math.random() * 15) + "s";
+  document.body.appendChild(petal);
+}
+</script>
+</body>
+</html>
+
 </body>
 </html>
